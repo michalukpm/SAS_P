@@ -1,0 +1,18 @@
+
+
+%macro loop_over_ds(in_ds=,in_var=);
+
+data tmp_file;
+set &in_ds.(obs=&_i. firstobs=obs=&_i.);
+call symput('tmp_value',&in_var.);
+run;
+
+
+%do _i=1 %to &no_of_obs;
+
+    put &tmp_value;
+
+%end;
+
+
+%mend;
